@@ -20,9 +20,9 @@ object Parser extends App {
     _.disposition == Disposition.UNKNOWN
   )
 
-  // I was not able to add a connection pool to SeenMalwaresDAO, so this
-  // block fails with `rejectedExecution` exception after writing in the
-  // database for a while
+  // This block fails with `rejectedExecution` exception after writing in the
+  // database for a while if the queue size is lesser than ~100000
+  // (which is the number of lines in `log.json` file)
   unknownMalwares.foreach { unknownMalware =>
     SeenMalwaresDAO.findBySha(unknownMalware.sha256).onComplete {
       case Success(malware) => malware match {
