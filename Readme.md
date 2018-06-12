@@ -1,6 +1,25 @@
 # Disclaimer
 This is an assignment for an American multinational technology conglomerate that develops, manufactures and sells networking hardware, telecommunications equipment and other high-technology services and products.
 
+# Requirements
+* [OpenJDK](http://openjdk.java.net/install/), or Java JDK, version 1.8.0 or newer
+* [Scala SBT version 1.1.6](https://www.scala-sbt.org/1.x/docs/Setup.html)
+
+# How to
+### Run the application
+
+To execute the application loading `log.json` and manipulating the database, run this command in the top folder of this project:
+```
+sbt run
+```
+
+### Test the application
+
+To execute the unit tests, run this command in the top folder of this project:
+```
+sbt test
+```
+
 # Assignment
 
 You've been given a series of log files from a malfunctioning cloud server, and have been tasked
@@ -48,6 +67,7 @@ dp:    disposition (valid values: MALICIOUS (1), CLEAN (2), UNKNOWN (3))
       * if so insert a new entry with `count == 1` and disposition (`dp`) == UNKNOWN
 3. We know the cloud server is malfunctioning, what types of patterns or anomalies did you observe?
     * If possible, what types of problem hypothesis can you form from your observations?
+    * **_Answer_**: _Some files were marked as disposition UNKNOWN while the particular SHA256 already existed in the database. If the origin of this data is always online, that means the source is unable to reach or connect to the main database containing already known information_.
 
 # Additional Info
 
