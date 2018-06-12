@@ -2,11 +2,15 @@ import scala.io.Source
 import scala.util.{Success, Failure}
 import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.libs.json.Json
+import com.typesafe.config._
 
 import models._
 
 object Parser extends App {
-  val dataSource = Source.fromFile("log.json")
+
+  // Configuration is loaded from `main/resources/application.conf`
+  val jsonFile = ConfigFactory.load().getString("jsonFile")
+  val dataSource = Source.fromFile(jsonFile)
 
   val seenMalwares = dataSource.getLines.map(
     line => Json.parse(line).as[SeenMalware]
